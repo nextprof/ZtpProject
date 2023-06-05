@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Document
 public class Book {
@@ -18,22 +17,6 @@ public class Book {
 
     public Book() {
     }
-
-//    public boolean update(Book book) {
-//        if (
-//                !Objects.equals(this.title, book.getTitle()) ||
-//                        !Objects.equals(this.author, book.getAuthor()) ||
-//                        !Objects.equals(this.issuedAt, book.getIssuedAt()) ||
-//                        !Objects.equals(this.isbnNumber, book.getIsbnNumber())
-//        ) {
-//            this.title = book.getTitle();
-//            this.author = book.getAuthor();
-//            this.issuedAt = book.getIssuedAt();
-//            this.isbnNumber = book.getIsbnNumber();
-//            return true;
-//        }
-//        return false;
-//    }
 
     public String getId() {
         return id;

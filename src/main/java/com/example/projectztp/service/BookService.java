@@ -9,7 +9,9 @@ import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.aggregation.ProjectionOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -45,7 +47,7 @@ public class BookService {
     }
 
     public Mono<Book> getBook(String id) {
-        return bookRepository.findById(id);
+        return bookRepository.findById(id).switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found")));
     }
 
     public Mono<Book> saveBook(Mono<Book> book) {
@@ -53,7 +55,7 @@ public class BookService {
     }
 
     public Mono<Book> updateBook(Mono<Book> book, String id) {
-        return bookRepository.findById(id).flatMap(b -> book)
+        return bookRepository.findById(id).switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"))).flatMap(b -> book)
                 .doOnNext(updated -> updated.setId(id))
                 .flatMap(bookRepository::save);
     }
