@@ -1,6 +1,6 @@
 package com.example.projectztp.controller;
 
-public record AddBookToCartDto(
+public record BookIdDto(
         String bookId
 ) {
 }

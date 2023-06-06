@@ -23,10 +23,8 @@ public class BookController {
         if(author != null && year != null) {
             return Flux.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Only one filter parameter available"));
         }
-
         return bookService.getBooks(author,year);
     }
-
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Book> getSingleBook(@PathVariable("id") String id) {
@@ -47,6 +45,5 @@ public class BookController {
     public Mono<Void> deleteBook(@PathVariable(value = "id") String id) {
         return bookService.deleteBook(id);
     }
-
 
 }

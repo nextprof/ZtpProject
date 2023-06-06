@@ -10,7 +10,6 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/cart")
 public class CartController {
 
-
     @Autowired
     private CartService service;
 
@@ -20,12 +19,12 @@ public class CartController {
     }
 
     @PostMapping
-    public Flux<Book> addBookToCart(@RequestBody AddBookToCartDto dto) {
+    public Flux<Book> addBookToCart(@RequestBody BookIdDto dto) {
         return service.addBookToCart(dto.bookId());
     }
 
     @DeleteMapping
-    public Flux<Book> deleteBookFromCart(@RequestBody AddBookToCartDto dto) {
+    public Flux<Book> deleteBookFromCart(@RequestBody BookIdDto dto) {
         return service.deleteBookFromCart(dto.bookId());
     }
 

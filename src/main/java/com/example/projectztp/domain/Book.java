@@ -14,10 +14,8 @@ public class Book {
     private String author;
     private LocalDate issuedAt;
     private String isbnNumber;
-
     public Book() {
     }
-
     public String getId() {
         return id;
     }

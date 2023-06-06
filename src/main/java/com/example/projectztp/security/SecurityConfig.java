@@ -16,7 +16,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-
     @Bean
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
